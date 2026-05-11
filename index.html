@@ -685,8 +685,9 @@
       font-size: .68rem;
       color: var(--teal);
       text-align: right;
-      max-width: 130px;
+      max-width: 150px;
       line-height: 1.4;
+      word-break: break-word;
     }
     .project-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
     .project-card p { font-size: .88rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 20px; }
@@ -837,9 +838,11 @@
     .social-link .si.tt  { background: rgba(255,255,255,.06); color: #fff; }
     .social-link .si.yt  { background: rgba(255,0,0,.1); color: #ff3333; }
     .social-link .si.tw  { background: rgba(255,255,255,.06); color: #ccc; }
+    .social-link .si.ph  { background: rgba(62,207,178,.1); color: var(--teal); }
     [data-theme="light"] .social-link .si.gh  { background: rgba(0,0,0,.08); color: #333; }
     [data-theme="light"] .social-link .si.tt  { background: rgba(0,0,0,.06); color: #111; }
     [data-theme="light"] .social-link .si.tw  { background: rgba(0,0,0,.06); color: #333; }
+    [data-theme="light"] .social-link .si.ph  { background: rgba(26,155,132,.12); color: var(--teal); }
 
     .social-link .sinfo { flex: 1; }
     .social-link .sinfo strong { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 1px; }
@@ -1071,7 +1074,7 @@
       </div>
       <div class="stat-card" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
         <div class="stat-tip">→ View all projects</div>
-        <div class="val">15+</div>
+        <div class="val">22+</div>
         <div class="lbl">Projects shipped</div>
       </div>
     </div>
@@ -1287,6 +1290,7 @@
       <button class="filter-tab" data-filter="event">Event Studies</button>
       <button class="filter-tab" data-filter="valuation">Valuation</button>
       <button class="filter-tab" data-filter="bi">BI & Analytics</button>
+      <button class="filter-tab" data-filter="excel">Excel Models</button>
     </div>
 
     <div class="projects-grid" id="projects-grid">
@@ -1580,6 +1584,188 @@
         </div>
       </div>
 
+      <!-- PROJECT: Supply Chain -->
+      <div class="project-card reveal" data-category="bi"
+           data-title="Supply Chain Analytics (Power BI)"
+           data-desc="Make-vs-buy decision tool with supplier quote analysis, dynamic volume scenario planning, and internal manufacturing cost comparison. Surfaces breakeven points and cost-per-unit curves across supplier tiers, enabling data-backed procurement decisions."
+           data-impact="Make vs Buy · Supplier quote analysis"
+           data-tags="Power BI,DAX,Supply Chain,Scenario Planning"
+           data-link="https://github.com/abdallah-bodzz/supply-chain-analytics-powerbi">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="project-impact">Make vs Buy<br>Supplier tiers</div>
+        </div>
+        <h3>Supply Chain Analytics</h3>
+        <p>Make-vs-buy decision tool with supplier quote analysis, dynamic volume scenario planning, and manufacturing cost comparison.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag teal">DAX</span>
+          <span class="tag">Supply Chain</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/supply-chain-analytics-powerbi" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Customer Churn Power BI -->
+      <div class="project-card reveal" data-category="bi" style="transition-delay:.08s"
+           data-title="Customer Churn Analysis (Power BI)"
+           data-desc="Telecom churn analysis on 6,687 customers (Databel dataset) with a 26.86% churn rate. Breakdown by churn reason, geography, age group, contract type, data plan, and international plan mismatch. Identifies the highest-value retention levers across customer segments."
+           data-impact="6,687 customers · 26.86% churn rate"
+           data-tags="Power BI,DAX,Churn Analysis,Telecom,Databel"
+           data-link="https://github.com/abdallah-bodzz/customer-churn-analysis-powerbi">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-user-minus"></i></div>
+          <div class="project-impact">6,687 customers<br>26.86% churn</div>
+        </div>
+        <h3>Customer Churn Analysis</h3>
+        <p>Telecom churn breakdown across 6,687 customers by reason, geography, contract type, and data plan. Built to surface the highest-value retention levers.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag teal">DAX</span>
+          <span class="tag">Churn</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/customer-churn-analysis-powerbi" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: HR Analytics -->
+      <div class="project-card reveal" data-category="bi" style="transition-delay:.16s"
+           data-title="HR Analytics (Power BI)"
+           data-desc="Employee attrition analysis for Atlas Labs covering demographics, attrition rates by department, role, tenure, and travel frequency. Includes individual performance tracking. Automated variance logic surfaced 3 high-attrition clusters on first load — no manual configuration required."
+           data-impact="Atlas Labs · 3 attrition clusters auto-detected"
+           data-tags="Power BI,DAX,HR Analytics,Attrition,Atlas Labs"
+           data-link="https://github.com/abdallah-bodzz/hr-analytics-powerbi">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-people-group"></i></div>
+          <div class="project-impact">3 clusters surfaced<br>on first load</div>
+        </div>
+        <h3>HR Analytics</h3>
+        <p>Employee attrition analysis for Atlas Labs by department, role, tenure, and travel. Automated variance logic surfaces high-attrition clusters on load.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag teal">DAX</span>
+          <span class="tag">HR</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/hr-analytics-powerbi" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Time Series Power BI -->
+      <div class="project-card reveal" data-category="bi"
+           data-title="Time Series Analysis (Power BI)"
+           data-desc="Retail point-of-sale (Superstore) and Microsoft financial data combined into a single dashboard. Covers rolling window calculations, YTD and YoY DAX measures, and built-in forecasting visuals. Designed to demonstrate temporal pattern analysis and trend decomposition in Power BI."
+           data-impact="Superstore + MSFT · Rolling windows · YoY"
+           data-tags="Power BI,DAX,Time Series,YTD,YoY,Forecasting"
+           data-link="https://github.com/abdallah-bodzz/time-series-analysis-powerbi-dashboard">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-wave-square"></i></div>
+          <div class="project-impact">Rolling windows<br>YTD / YoY DAX</div>
+        </div>
+        <h3>Time Series Dashboard</h3>
+        <p>Retail + financial data with rolling windows, YTD/YoY DAX measures, and forecasting visuals. Temporal pattern analysis end-to-end in Power BI.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag teal">DAX</span>
+          <span class="tag">Time Series</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/time-series-analysis-powerbi-dashboard" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Financial Modeling Excel -->
+      <div class="project-card reveal" data-category="excel" style="transition-delay:.08s"
+           data-title="Financial Modeling (Excel)"
+           data-desc="Income statements, cap rate models, and dynamic forecasting for real estate investments. Covers property valuation via cap rate, cash-on-cash return, and net operating income — all in native Excel with formula-driven scenarios. Designed for real estate analysts who live in spreadsheets."
+           data-impact="Real estate · Cap rates · NOI models"
+           data-tags="Excel,Financial Modeling,Real Estate,Cap Rate,NOI"
+           data-link="https://github.com/abdallah-bodzz/financial-modeling-excel">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-building"></i></div>
+          <div class="project-impact">Real estate<br>Cap rates · NOI</div>
+        </div>
+        <h3>Financial Modeling (Excel)</h3>
+        <p>Real estate investment models — cap rates, NOI, cash-on-cash return, and dynamic forecasting. Formula-driven, no macros.</p>
+        <div class="project-tags">
+          <span class="tag">Excel</span>
+          <span class="tag teal">Real Estate</span>
+          <span class="tag">Cap Rate</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/financial-modeling-excel" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: NRM Excel -->
+      <div class="project-card reveal" data-category="excel" style="transition-delay:.16s"
+           data-title="Net Revenue Management (Excel)"
+           data-desc="Full NRM business case for an FMCG supplier (HealthMax). Covers market share analysis, portfolio profitability by SKU, subcategory opportunity sizing, and promotional ROI. Models trade spend efficiency and price-pack architecture decisions — the kind of analysis done in major CPG companies."
+           data-impact="FMCG · Promo ROI · Portfolio profitability"
+           data-tags="Excel,NRM,FMCG,Promotional ROI,Trade Spend"
+           data-link="https://github.com/abdallah-bodzz/net-revenue-management-excel">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-tags"></i></div>
+          <div class="project-impact">FMCG · Promo ROI<br>Portfolio mix</div>
+        </div>
+        <h3>Net Revenue Management</h3>
+        <p>Full NRM business case for HealthMax (FMCG). Market share, SKU profitability, subcategory sizing, and promotional ROI. CPG-grade analysis in Excel.</p>
+        <div class="project-tags">
+          <span class="tag">Excel</span>
+          <span class="tag teal">NRM</span>
+          <span class="tag">FMCG</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/net-revenue-management-excel" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT: Churn Excel -->
+      <div class="project-card reveal" data-category="excel"
+           data-title="Customer Churn Analysis (Excel)"
+           data-desc="Churn analysis on 6,687 telecom customers (Databel) built entirely in Excel. PivotTables, calculated columns, and a complete interactive dashboard. Covers churn by reason, geography, plan type, and demographics — mirrors the Power BI version but demonstrates Excel-native analytical depth."
+           data-impact="6,687 customers · Excel-native dashboard"
+           data-tags="Excel,PivotTables,Churn Analysis,Databel,Dashboard"
+           data-link="https://github.com/abdallah-bodzz/customer-churn-analysis-excel">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-table-cells"></i></div>
+          <div class="project-impact">6,687 customers<br>Excel PivotTables</div>
+        </div>
+        <h3>Churn Analysis (Excel)</h3>
+        <p>Telecom churn dashboard built entirely in Excel — PivotTables, calculated columns, and full interactive reporting across 6,687 customers.</p>
+        <div class="project-tags">
+          <span class="tag">Excel</span>
+          <span class="tag teal">PivotTables</span>
+          <span class="tag">Churn</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/customer-churn-analysis-excel" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
     </div><!-- /#projects-grid -->
   </div>
 </section>
@@ -1610,7 +1796,7 @@
           <div class="period">2024 — Present</div>
           <h3>Self-Directed Financial ML Engineer</h3>
           <div class="org">Independent · GitHub @abdallah-bodzz</div>
-          <p>Built 15+ production-grade projects across credit risk, fraud detection, Monte Carlo simulation, computer vision, DCF valuation, and Power BI dashboards. All projects optimised for real business impact.</p>
+          <p>Built 22+ production-grade projects across credit risk, fraud detection, Monte Carlo simulation, computer vision, DCF valuation, and Power BI dashboards. All projects optimised for real business impact.</p>
         </div>
 
         <div class="timeline-item">
@@ -1653,6 +1839,11 @@
             <i class="fa-solid fa-download"></i> Download CV
           </a>
         </div>
+        <!-- Phone number -->
+        <p style="margin-top:20px;font-family:var(--font-mono);font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-phone" style="color:var(--teal);font-size:.7rem;"></i>
+          <a href="tel:+201205062962" style="color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--muted)'">+20 120 506 2962</a>
+        </p>
       </div>
 
       <!-- Social links — FIX: added X/Twitter, kept email as social card -->
@@ -1699,6 +1890,16 @@
           <div class="sinfo">
             <strong>YouTube</strong>
             <span>@abdallahabdelhady8713</span>
+          </div>
+          <i class="fa-solid fa-arrow-right arr"></i>
+        </a>
+
+        <!-- Phone / WhatsApp + tel: -->
+        <a href="https://wa.me/201205062962" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="si ph"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="sinfo">
+            <strong>WhatsApp / Call</strong>
+            <span><a href="tel:+201205062962" style="color:inherit;text-decoration:none;" onclick="event.stopPropagation()">+20 120 506 2962</a></span>
           </div>
           <i class="fa-solid fa-arrow-right arr"></i>
         </a>
@@ -2015,6 +2216,83 @@ heroSection.addEventListener('mousemove', (e) => {
   resize();
   window.addEventListener('resize', resize);
   draw();
+})();
+
+/* ── Active nav link on scroll ─────────────────────────────── */
+(function() {
+  const sections = ['about','skills','projects','metrics','experience','contact'];
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const mobileLinks = document.querySelectorAll('#mobile-menu a[href^="#"]');
+  const allLinks = [...navLinks, ...mobileLinks];
+
+  function setActive(id) {
+    allLinks.forEach(a => {
+      const match = a.getAttribute('href') === '#' + id;
+      a.style.color = match ? 'var(--gold)' : '';
+    });
+  }
+
+  const secObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) secObserver.observe(el);
+  });
+})();
+
+/* ── Copy phone number on click ────────────────────────────── */
+(function() {
+  const phoneLinks = document.querySelectorAll('a[href="tel:+201205062962"]');
+  phoneLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // On desktop, copy to clipboard; on mobile, tel: dial takes over
+      if (window.innerWidth > 700) {
+        e.preventDefault();
+        navigator.clipboard?.writeText('+201205062962').then(() => {
+          const orig = link.textContent;
+          link.textContent = 'Copied!';
+          link.style.color = 'var(--teal)';
+          setTimeout(() => {
+            link.textContent = orig;
+            link.style.color = '';
+          }, 1500);
+        });
+      }
+    });
+  });
+})();
+
+/* ── Project card count badge in filter tabs ───────────────── */
+(function() {
+  const cards = document.querySelectorAll('#projects-grid .project-card');
+  const tabs = document.querySelectorAll('.filter-tab');
+  tabs.forEach(tab => {
+    const filter = tab.dataset.filter;
+    const count = filter === 'all'
+      ? cards.length
+      : [...cards].filter(c => c.dataset.category === filter).length;
+    const badge = document.createElement('span');
+    badge.textContent = count;
+    badge.style.cssText = `
+      display:inline-flex;align-items:center;justify-content:center;
+      width:16px;height:16px;border-radius:50%;
+      font-size:.6rem;font-weight:700;margin-left:5px;
+      background:rgba(232,168,56,.18);color:var(--gold);
+      transition:background .2s,color .2s;
+    `;
+    tab.appendChild(badge);
+    // Keep badge readable when tab is active
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab span').forEach(b => {
+        b.style.background = 'rgba(232,168,56,.18)';
+        b.style.color = 'var(--gold)';
+      });
+      badge.style.background = 'rgba(12,13,15,.25)';
+      badge.style.color = '#0c0d0f';
+    });
+  });
 })();
 </script>
 </body>
