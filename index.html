@@ -5,23 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abdallah Abdelhady — Data Analyst & ML Engineer</title>
 
-  <!-- ── Fonts ─────────────────────────────────────────────── -->
-  <!-- Playfair Display: editorial display font for hero -->
-  <!-- DM Mono: technical monospaced accents -->
-  <!-- Lato: clean body text -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23e8a838'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='18' fill='%230c0d0f'>AA</text></svg>" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 
-  <!-- ── Icons ─────────────────────────────────────────────── -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     /* ══════════════════════════════════════════════════════════
-       CSS CUSTOM PROPERTIES  (edit here to retheme everything)
+       CSS CUSTOM PROPERTIES
        ══════════════════════════════════════════════════════════ */
     :root {
-      /* — Dark theme (default) — */
       --bg:          #0c0d0f;
       --bg2:         #111316;
       --bg3:         #171a1f;
@@ -29,10 +28,10 @@
       --border:      #272d38;
       --text:        #e2e6ed;
       --muted:       #6b7585;
-      --gold:        #e8a838;        /* primary accent */
-      --gold2:       #f0c060;        /* lighter accent */
-      --teal:        #3ecfb2;        /* secondary accent */
-      --red:         #e85454;        /* alert / highlight */
+      --gold:        #e8a838;
+      --gold2:       #f0c060;
+      --teal:        #3ecfb2;
+      --red:         #e85454;
       --font-display: 'Playfair Display', Georgia, serif;
       --font-mono:    'DM Mono', 'Courier New', monospace;
       --font-body:    'Lato', sans-serif;
@@ -48,9 +47,10 @@
       --surface: #ffffff;
       --border:  #d8d5ce;
       --text:    #1a1a1a;
-      --muted:   #6b6860;
-      --gold:    #b8801a;
-      --gold2:   #d09828;
+      --muted:   #5a5750;
+      /* FIX: darkened gold for WCAG AA compliance on light bg */
+      --gold:    #9a6e1a;
+      --gold2:   #b37a1f;
       --teal:    #1a9b84;
       --shadow:  0 4px 24px rgba(0,0,0,.12);
     }
@@ -73,7 +73,7 @@
     img { display: block; max-width: 100%; }
     ul { list-style: none; }
 
-    /* ── Utility ─────────────────────────────────────────────── */
+    /* Utility */
     .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
     .tag {
       display: inline-block;
@@ -86,6 +86,10 @@
       border: 1px solid rgba(232,168,56,.25);
       border-radius: 3px;
       padding: 2px 8px;
+    }
+    [data-theme="light"] .tag {
+      background: rgba(154,110,26,.1);
+      border-color: rgba(154,110,26,.3);
     }
     .tag.teal { color: var(--teal); background: rgba(62,207,178,.08); border-color: rgba(62,207,178,.22); }
     .tag.red  { color: var(--red);  background: rgba(232,84,84,.08);  border-color: rgba(232,84,84,.22); }
@@ -105,7 +109,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* Fade-in on scroll — JS adds .visible */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -114,7 +117,7 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ══════════════════════════════════════════════════════════
-       ANIMATED DATA-GRID CANVAS BACKGROUND (hero)
+       ANIMATED CANVAS BACKGROUND
        ══════════════════════════════════════════════════════════ */
     #grid-canvas {
       position: absolute;
@@ -161,7 +164,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
     }
     .nav-links a {
       font-family: var(--font-mono);
@@ -172,6 +175,33 @@
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--gold); }
+
+    /* Sticky CV pill — appears on scroll */
+    #nav-cv-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      background: var(--gold);
+      color: #0c0d0f;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s, transform .35s;
+      transform: translateY(-4px);
+      white-space: nowrap;
+    }
+    #nav-cv-pill.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    #nav-cv-pill:hover { background: var(--gold2); }
 
     /* Theme toggle */
     #theme-btn {
@@ -227,6 +257,13 @@
       color: var(--muted);
     }
     #mobile-menu a:hover { color: var(--gold); }
+    .mobile-cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--gold) !important;
+      font-weight: 500;
+    }
 
     /* ══════════════════════════════════════════════════════════
        HERO
@@ -239,7 +276,6 @@
       overflow: hidden;
     }
 
-    /* Diagonal accent band */
     #hero::after {
       content: '';
       position: absolute;
@@ -249,6 +285,18 @@
       pointer-events: none;
     }
 
+    /* Mouse glow effect */
+    #hero-glow {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,168,56,.06) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: left .15s ease, top .15s ease;
+      z-index: 1;
+    }
+
     .hero-content {
       position: relative;
       z-index: 2;
@@ -256,7 +304,6 @@
       max-width: 780px;
     }
 
-    /* Blinking cursor line */
     .hero-eyebrow {
       font-family: var(--font-mono);
       font-size: .82rem;
@@ -290,7 +337,6 @@
 
     @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
 
-    /* Typewriter roles */
     .hero-roles {
       font-family: var(--font-mono);
       font-size: clamp(1rem, 2.5vw, 1.3rem);
@@ -302,9 +348,9 @@
     .hero-roles #typewriter { color: var(--teal); }
 
     .hero-summary {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 520px;
       line-height: 1.8;
       margin-bottom: 40px;
       animation: fadeUp .9s .45s ease both;
@@ -351,6 +397,16 @@
       color: var(--gold);
       transform: translateY(-2px);
     }
+    .btn-cv {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid rgba(62,207,178,.35);
+    }
+    .btn-cv:hover {
+      background: rgba(62,207,178,.1);
+      border-color: var(--teal);
+      transform: translateY(-2px);
+    }
 
     /* Floating stats */
     .hero-stats {
@@ -368,6 +424,14 @@
       padding: 14px 20px;
       border-radius: var(--radius);
       min-width: 170px;
+      cursor: pointer;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .stat-card:hover {
+      border-color: var(--gold);
+      transform: translateX(-4px);
+      box-shadow: 4px 0 0 var(--gold), var(--shadow);
     }
     .stat-card .val {
       font-family: var(--font-mono);
@@ -383,6 +447,35 @@
       letter-spacing: .05em;
       text-transform: uppercase;
     }
+    /* Tooltip on stat cards */
+    .stat-card .stat-tip {
+      position: absolute;
+      right: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .06em;
+      white-space: nowrap;
+      padding: 5px 10px;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+    .stat-card .stat-tip::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+      border-left-color: var(--gold);
+    }
+    .stat-card:hover .stat-tip { opacity: 1; }
 
     /* Scroll indicator */
     .scroll-hint {
@@ -400,9 +493,7 @@
       color: var(--muted);
       animation: fadeUp 1s 1.1s ease both;
     }
-    .scroll-hint .arrow {
-      animation: bounce 1.6s ease infinite;
-    }
+    .scroll-hint .arrow { animation: bounce 1.6s ease infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 
     /* ══════════════════════════════════════════════════════════
@@ -433,29 +524,16 @@
       gap: 14px;
       transition: border-color .25s, transform .25s;
     }
-    .highlight-item:hover {
-      border-color: var(--gold);
-      transform: translateX(4px);
-    }
+    .highlight-item:hover { border-color: var(--gold); transform: translateX(4px); }
     .highlight-item .ico {
-      width: 36px; height: 36px;
-      min-width: 36px;
+      width: 36px; height: 36px; min-width: 36px;
       background: rgba(232,168,56,.12);
       border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold);
-      font-size: .9rem;
+      color: var(--gold); font-size: .9rem;
     }
-    .highlight-item h4 {
-      font-size: .9rem;
-      font-weight: 700;
-      margin-bottom: 3px;
-    }
-    .highlight-item p {
-      font-size: .82rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    .highlight-item h4 { font-size: .9rem; font-weight: 700; margin-bottom: 3px; }
+    .highlight-item p { font-size: .82rem; color: var(--muted); line-height: 1.5; }
 
     /* ══════════════════════════════════════════════════════════
        SKILLS
@@ -489,11 +567,7 @@
       align-items: center;
       gap: 8px;
     }
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .pill {
       font-family: var(--font-mono);
       font-size: .72rem;
@@ -535,7 +609,6 @@
     }
     .projects-header a:hover { gap: 10px; }
 
-    /* Filter tabs */
     .filter-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -588,7 +661,6 @@
       transition: transform .35s ease;
     }
     .project-card:hover {
-      border-color: var(--border);
       transform: translateY(-5px);
       box-shadow: var(--shadow);
     }
@@ -606,8 +678,7 @@
       border: 1px solid rgba(232,168,56,.2);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold);
-      font-size: 1.1rem;
+      color: var(--gold); font-size: 1.1rem;
     }
     .project-impact {
       font-family: var(--font-mono);
@@ -617,29 +688,10 @@
       max-width: 130px;
       line-height: 1.4;
     }
-    .project-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-    .project-card p {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 20px;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .project-card .btn-row {
-      display: flex;
-      gap: 10px;
-    }
+    .project-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .project-card p { font-size: .88rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .project-card .btn-row { display: flex; gap: 10px; }
     .btn-sm {
       font-family: var(--font-mono);
       font-size: .72rem;
@@ -658,19 +710,13 @@
       transition: all .2s;
       text-decoration: none;
     }
-    .btn-sm:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+    .btn-sm:hover { border-color: var(--gold); color: var(--gold); }
     .btn-sm.filled {
       background: var(--gold);
       border-color: var(--gold);
       color: #0c0d0f;
     }
-    .btn-sm.filled:hover {
-      background: var(--gold2);
-      border-color: var(--gold2);
-    }
+    .btn-sm.filled:hover { background: var(--gold2); border-color: var(--gold2); }
 
     /* ══════════════════════════════════════════════════════════
        METRICS BAND
@@ -684,7 +730,6 @@
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 0;
     }
     .metric-item {
       text-align: center;
@@ -745,28 +790,10 @@
       background: var(--gold);
       border: 2px solid var(--bg2);
     }
-    .timeline-item .period {
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      letter-spacing: .1em;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-    .timeline-item h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 3px;
-    }
-    .timeline-item .org {
-      font-size: .85rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .timeline-item p {
-      font-size: .85rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    .timeline-item .period { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 6px; }
+    .timeline-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 3px; }
+    .timeline-item .org { font-size: .85rem; color: var(--muted); margin-bottom: 10px; }
+    .timeline-item p { font-size: .85rem; color: var(--muted); line-height: 1.7; }
 
     /* ══════════════════════════════════════════════════════════
        CONTACT
@@ -780,11 +807,7 @@
     }
     .contact-text p { color: var(--muted); line-height: 1.9; margin-bottom: 36px; }
 
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .social-links { display: flex; flex-direction: column; gap: 14px; }
     .social-link {
       display: flex;
       align-items: center;
@@ -803,19 +826,20 @@
       box-shadow: -4px 0 0 var(--gold);
     }
     .social-link .si {
-      width: 38px; height: 38px;
-      min-width: 38px;
+      width: 38px; height: 38px; min-width: 38px;
       border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem;
     }
-    .social-link .si.gh { background: rgba(255,255,255,.08); color: #fff; }
-    .social-link .si.li { background: rgba(10,102,194,.15); color: #0a66c2; }
-    .social-link .si.em { background: rgba(232,84,84,.12); color: var(--red); }
-    .social-link .si.tt { background: rgba(255,255,255,.06); color: #fff; }
-    .social-link .si.yt { background: rgba(255,0,0,.1); color: #ff3333; }
-    [data-theme="light"] .social-link .si.gh { background: rgba(0,0,0,.08); color: #333; }
-    [data-theme="light"] .social-link .si.tt { background: rgba(0,0,0,.06); color: #111; }
+    .social-link .si.gh  { background: rgba(255,255,255,.08); color: #fff; }
+    .social-link .si.li  { background: rgba(10,102,194,.15); color: #0a66c2; }
+    .social-link .si.em  { background: rgba(232,84,84,.12); color: var(--red); }
+    .social-link .si.tt  { background: rgba(255,255,255,.06); color: #fff; }
+    .social-link .si.yt  { background: rgba(255,0,0,.1); color: #ff3333; }
+    .social-link .si.tw  { background: rgba(255,255,255,.06); color: #ccc; }
+    [data-theme="light"] .social-link .si.gh  { background: rgba(0,0,0,.08); color: #333; }
+    [data-theme="light"] .social-link .si.tt  { background: rgba(0,0,0,.06); color: #111; }
+    [data-theme="light"] .social-link .si.tw  { background: rgba(0,0,0,.06); color: #333; }
 
     .social-link .sinfo { flex: 1; }
     .social-link .sinfo strong { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 1px; }
@@ -827,17 +851,43 @@
        FOOTER
        ══════════════════════════════════════════════════════════ */
     footer {
-      padding: 32px 0;
+      padding: 28px 0;
       border-top: 1px solid var(--border);
-      text-align: center;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy {
       font-family: var(--font-mono);
       font-size: .75rem;
       color: var(--muted);
       letter-spacing: .06em;
     }
-    footer span { color: var(--gold); }
+    .footer-copy span { color: var(--gold); }
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-socials a {
+      color: var(--muted);
+      font-size: .95rem;
+      transition: color .2s, transform .2s;
+    }
+    .footer-socials a:hover { color: var(--gold); transform: translateY(-2px); }
+    .footer-updated {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: var(--muted);
+      opacity: .6;
+      letter-spacing: .06em;
+    }
 
-    /* ── Back to top ─────────────────────────────────────────── */
+    /* Back to top */
     #btt {
       position: fixed;
       bottom: 28px; right: 28px;
@@ -887,20 +937,8 @@
       transition: transform .3s;
     }
     #modal-overlay.open #modal { transform: scale(1) translateY(0); }
-    #modal h2 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-    #modal .modal-meta {
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      color: var(--gold);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
+    #modal h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; }
+    #modal .modal-meta { font-family: var(--font-mono); font-size: .72rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
     #modal p { color: var(--muted); line-height: 1.8; font-size: .92rem; margin-bottom: 18px; }
     #modal .modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
     #modal .modal-close {
@@ -929,6 +967,8 @@
       #hamburger { display: flex; }
       .projects-grid { grid-template-columns: 1fr; }
       .hero-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .footer-inner { flex-direction: column; text-align: center; }
+      #nav-cv-pill { display: none; }
     }
   </style>
 </head>
@@ -939,7 +979,6 @@
      ════════════════════════════════════════════════════════════ -->
 <nav id="navbar">
   <div class="container nav-inner">
-    <!-- Logo: edit the initials/name here -->
     <a href="#hero" class="nav-logo">AA<span>.</span></a>
 
     <div class="nav-links">
@@ -948,7 +987,10 @@
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
-      <!-- Theme toggle -->
+      <!-- Sticky CV pill -->
+      <a href="Abdallah_Abdelhady_CV.docx" download id="nav-cv-pill">
+        <i class="fa-solid fa-download"></i> Download CV
+      </a>
       <button id="theme-btn" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
@@ -956,7 +998,8 @@
 
     <!-- Mobile controls -->
     <div style="display:flex;align-items:center;gap:12px;">
-      <button id="theme-btn-mobile" class="btn-outline" style="display:none;padding:8px 12px;font-size:.75rem;border-radius:50%;width:36px;height:36px;" aria-label="Toggle theme">
+      <!-- FIX: mobile theme toggle now visible via JS on DOMContentLoaded -->
+      <button id="theme-btn-mobile" style="background:var(--surface);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:.85rem;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
       <div id="hamburger" aria-label="Menu">
@@ -973,36 +1016,40 @@
   <a href="#projects">Projects</a>
   <a href="#experience">Experience</a>
   <a href="#contact">Contact</a>
+  <a href="Abdallah_Abdelhady_CV.docx" download class="mobile-cv-link">
+    <i class="fa-solid fa-download"></i> Download CV
+  </a>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
      HERO
      ════════════════════════════════════════════════════════════ -->
 <section id="hero">
-  <!-- Animated grid canvas -->
   <canvas id="grid-canvas"></canvas>
+  <!-- Mouse glow -->
+  <div id="hero-glow"></div>
 
   <div class="container" style="position:relative;z-index:2;width:100%;">
     <div class="hero-content">
-      <!-- Edit the eyebrow text below -->
       <div class="hero-eyebrow">Open to opportunities · Alexandria, Egypt</div>
 
-      <!-- ✏️ EDIT: Your name -->
       <h1 class="hero-name">Abdallah<br><span class="accent">Abdelhady</span></h1>
 
-      <!-- Typewriter roles — edit the array in JS section below -->
       <div class="hero-roles">
         <span id="typewriter"></span><span class="cursor" style="color:var(--teal)">|</span>
       </div>
 
-      <!-- ✏️ EDIT: Your professional summary (1-2 sentences) -->
+      <!-- Trimmed hero summary (-18%) -->
       <p class="hero-summary">
-        I build data-driven tools at the intersection of <strong style="color:var(--text)">machine learning, quantitative risk, and finance</strong> — from credit risk pipelines and Monte Carlo VaR simulations to DCF valuation engines and BI dashboards. Every project is driven by real business impact.
+        I build data-driven tools at the intersection of <strong style="color:var(--text)">machine learning, quantitative risk, and finance</strong> — credit risk pipelines, Monte Carlo VaR, fraud detection APIs, and BI dashboards. Everything is driven by real business impact.
       </p>
 
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">
           <i class="fa-solid fa-chart-line"></i> View Projects
+        </a>
+        <a href="Abdallah_Abdelhady_CV.docx" download class="btn btn-cv">
+          <i class="fa-solid fa-download"></i> Download CV
         </a>
         <a href="#contact" class="btn btn-outline">
           <i class="fa-regular fa-envelope"></i> Get in Touch
@@ -1010,24 +1057,26 @@
       </div>
     </div>
 
-    <!-- Floating stat cards — edit values as needed -->
+    <!-- Floating stat cards with tooltips linking to projects -->
     <div class="hero-stats">
-      <div class="stat-card">
+      <div class="stat-card" onclick="scrollToProject('fraud-card')" title="Jump to: Fraud Detection API">
+        <div class="stat-tip">→ Fraud Detection API</div>
         <div class="val">AUPRC .87</div>
         <div class="lbl">Fraud detection</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="scrollToProject('credit-card')" title="Jump to: Credit Risk Scoring">
+        <div class="stat-tip">→ Credit Risk Scoring</div>
         <div class="val">$3.55M</div>
         <div class="lbl">Net benefit / 10k loans</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+        <div class="stat-tip">→ View all projects</div>
         <div class="val">15+</div>
         <div class="lbl">Projects shipped</div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll hint -->
   <div class="scroll-hint">
     <span>Scroll</span>
     <i class="fa-solid fa-chevron-down arrow"></i>
@@ -1040,23 +1089,20 @@
 <section id="about">
   <div class="container">
     <div class="about-grid">
-
       <div class="about-text reveal">
         <div class="section-label">// About me</div>
         <h2 class="section-title">Turning raw data into<br><em>business decisions</em></h2>
-        <!-- ✏️ EDIT: Your bio paragraphs -->
         <p>
           I'm a <strong>CS student at Alexandria University (FCDS)</strong> with a deep focus on financial ML and data engineering. I bridge the gap between technical rigor and business impact — optimizing models not for accuracy, but for dollars saved and risk reduced.
         </p>
         <p>
-          My work spans credit risk scoring, Monte Carlo portfolio simulation, DCF valuation engines, and production-ready fraud detection APIs — all backed by clean, modular code and real financial data.
+          My work spans credit risk scoring, Monte Carlo portfolio simulation, DCF valuation engines, real-time computer vision systems, geopolitical event studies, and production-ready fraud detection APIs — all backed by clean, modular code.
         </p>
         <p>
-          I also share my learning journey on <strong>TikTok @data_w_bodzz</strong>, covering Power BI tips, SQL deep dives, and behind-the-scenes project builds with 16k+ views on best-performing content.
+          I share my journey on <strong>TikTok @data_w_bodzz</strong> — Power BI tips, SQL deep dives, and behind-the-scenes builds with 200k+ total views.
         </p>
       </div>
 
-      <!-- Highlight cards — add / remove / edit freely -->
       <div class="about-highlights reveal" style="transition-delay:.15s">
         <div class="highlight-item">
           <div class="ico"><i class="fa-solid fa-brain"></i></div>
@@ -1080,10 +1126,10 @@
           </div>
         </div>
         <div class="highlight-item">
-          <div class="ico"><i class="fa-solid fa-table-columns"></i></div>
+          <div class="ico"><i class="fa-solid fa-eye"></i></div>
           <div>
-            <h4>Interactive Dashboards</h4>
-            <p>Power BI & Excel models covering ops, finance, supply chain, HR, and customer analytics.</p>
+            <h4>Computer Vision</h4>
+            <p>Real-time fatigue detection: CNN hybrid, 98.8% accuracy at 3–5ms inference on CPU.</p>
           </div>
         </div>
       </div>
@@ -1101,9 +1147,7 @@
       <h2 class="section-title">Tools & Technologies</h2>
     </div>
 
-    <!-- ✏️ EDIT: Add/remove skill categories and pills -->
     <div class="skills-grid">
-
       <div class="skill-category reveal">
         <h3><i class="fa-brands fa-python"></i> Languages</h3>
         <div class="skill-pills">
@@ -1114,7 +1158,7 @@
         </div>
       </div>
 
-      <div class="skill-category reveal" style="transition-delay:.08s">
+      <div class="skill-category reveal" style="transition-delay:.07s">
         <h3><i class="fa-solid fa-robot"></i> ML & Data Science</h3>
         <div class="skill-pills">
           <span class="pill">XGBoost</span>
@@ -1127,7 +1171,19 @@
         </div>
       </div>
 
-      <div class="skill-category reveal" style="transition-delay:.16s">
+      <!-- NEW: Computer Vision category -->
+      <div class="skill-category reveal" style="transition-delay:.14s">
+        <h3><i class="fa-solid fa-eye"></i> Computer Vision</h3>
+        <div class="skill-pills">
+          <span class="pill">OpenCV</span>
+          <span class="pill">MediaPipe</span>
+          <span class="pill">TensorFlow</span>
+          <span class="pill">CNN</span>
+          <span class="pill">solvePnP</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="transition-delay:.21s">
         <h3><i class="fa-solid fa-square-root-variable"></i> Quantitative Finance</h3>
         <div class="skill-pills">
           <span class="pill">Monte Carlo</span>
@@ -1135,11 +1191,12 @@
           <span class="pill">SciPy</span>
           <span class="pill">Cholesky</span>
           <span class="pill">Student-t</span>
+          <span class="pill">OLS Event Study</span>
           <span class="pill">yfinance</span>
         </div>
       </div>
 
-      <div class="skill-category reveal" style="transition-delay:.24s">
+      <div class="skill-category reveal" style="transition-delay:.28s">
         <h3><i class="fa-solid fa-chart-pie"></i> Visualization & BI</h3>
         <div class="skill-pills">
           <span class="pill">Power BI</span>
@@ -1150,7 +1207,7 @@
         </div>
       </div>
 
-      <div class="skill-category reveal" style="transition-delay:.32s">
+      <div class="skill-category reveal" style="transition-delay:.35s">
         <h3><i class="fa-solid fa-layer-group"></i> Backend & APIs</h3>
         <div class="skill-pills">
           <span class="pill">FastAPI</span>
@@ -1161,7 +1218,7 @@
         </div>
       </div>
 
-      <div class="skill-category reveal" style="transition-delay:.4s">
+      <div class="skill-category reveal" style="transition-delay:.42s">
         <h3><i class="fa-solid fa-database"></i> Databases & Tools</h3>
         <div class="skill-pills">
           <span class="pill">PostgreSQL</span>
@@ -1172,7 +1229,6 @@
           <span class="pill">openpyxl</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1182,7 +1238,6 @@
      ════════════════════════════════════════════════════════════ -->
 <section id="metrics">
   <div class="container">
-    <!-- ✏️ EDIT: Your key numbers -->
     <div class="metrics-grid">
       <div class="metric-item reveal">
         <div class="metric-val" data-count="152">0</div>
@@ -1194,15 +1249,15 @@
       </div>
       <div class="metric-item reveal" style="transition-delay:.2s">
         <div class="metric-val" data-prefix="$" data-count="10576">0</div>
-        <div class="metric-lbl">Protected by fraud API (threshold 0.4)</div>
+        <div class="metric-lbl">Protected by fraud API (t=0.4)</div>
       </div>
       <div class="metric-item reveal" style="transition-delay:.3s">
         <div class="metric-val" data-count="200">0</div>
         <div class="metric-lbl">k+ TikTok views</div>
       </div>
       <div class="metric-item reveal" style="transition-delay:.4s">
-        <div class="metric-val" data-count="15">0</div>
-        <div class="metric-lbl">Projects shipped</div>
+        <div class="metric-val" data-count="98.8" data-decimals="1">0</div>
+        <div class="metric-lbl">% CV model accuracy</div>
       </div>
     </div>
   </div>
@@ -1218,26 +1273,26 @@
         <div class="section-label">// Featured work</div>
         <h2 class="section-title">Projects</h2>
       </div>
-      <!-- ✏️ EDIT: Your GitHub URL -->
-      <a href="https://github.com/abdallah-bodzz" target="_blank" rel="noopener">
+      <a href="https://github.com/abdallah-bodzz?tab=repositories" target="_blank" rel="noopener noreferrer">
         View all on GitHub <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
 
-    <!-- Filter tabs -->
+    <!-- Expanded filter tabs -->
     <div class="filter-tabs reveal">
       <button class="filter-tab active" data-filter="all">All</button>
       <button class="filter-tab" data-filter="ml">Machine Learning</button>
+      <button class="filter-tab" data-filter="cv">Computer Vision</button>
       <button class="filter-tab" data-filter="quant">Quantitative Risk</button>
+      <button class="filter-tab" data-filter="event">Event Studies</button>
       <button class="filter-tab" data-filter="valuation">Valuation</button>
       <button class="filter-tab" data-filter="bi">BI & Analytics</button>
     </div>
 
-    <!-- ✏️ EDIT: Add/remove project cards. Each card needs data-category matching a filter tab -->
     <div class="projects-grid" id="projects-grid">
 
-      <!-- PROJECT 1 -->
-      <div class="project-card reveal" data-category="ml"
+      <!-- PROJECT 1: Fraud Detection -->
+      <div class="project-card reveal" id="fraud-card" data-category="ml"
            data-title="Fraud Detection API"
            data-desc="Production-ready credit card fraud detection API with business-aware threshold tuning. Optimised for dollars saved — not accuracy. Threshold 0.4 protects $10,576 per batch. AUPRC 0.87 on highly imbalanced data (0.17% fraud rate). Includes Docker containerisation, rate limiting, and structured logging via loguru."
            data-impact="AUPRC 0.87 · $10,576 protected"
@@ -1257,14 +1312,14 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/fraud-detection-api" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/fraud-detection-api" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 2 -->
-      <div class="project-card reveal" data-category="ml" style="transition-delay:.08s"
+      <!-- PROJECT 2: Credit Risk -->
+      <div class="project-card reveal" id="credit-card" data-category="ml" style="transition-delay:.08s"
            data-title="Credit Risk Scoring"
            data-desc="End-to-end loan default prediction pipeline: EDA, feature engineering, model comparison (Logistic Regression, Random Forest, XGBoost, LightGBM), probability calibration, and business-optimised threshold selection. Business impact: $3.55M net benefit and 152% ROI per 10,000 loans processed."
            data-impact="$3.55M net benefit · 152% ROI"
@@ -1283,13 +1338,13 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/credit-risk-scoring" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/credit-risk-scoring" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 3 -->
+      <!-- PROJECT 3: Heart Disease -->
       <div class="project-card reveal" data-category="ml" style="transition-delay:.16s"
            data-title="Heart Disease Prediction"
            data-desc="Binary classifier on the UCI Cleveland dataset. Random Forest with threshold-optimised screening (t=0.40): recall 0.964, F1 0.900. Business impact: 164 fewer missed diagnoses, translating to approximately $8.1M in savings per 10,000 patients screened."
@@ -1309,13 +1364,40 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/heart-disease-prediction" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/heart-disease-prediction" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 4 -->
+      <!-- PROJECT: DriveGuard (NEW) -->
+      <div class="project-card reveal" data-category="cv"
+           data-title="DriveGuard — Real-Time Fatigue Detection"
+           data-desc="Real-time driver fatigue detection system using a standard webcam. EAR/MAR geometry + CNN hybrid trained on 84k-image MRL dataset. 98.8% accuracy at 3–5ms CPU inference — fully local, no GPU required. Dual-timescale fatigue scoring, head pose estimation via solvePnP, gesture-based alarm dismissal. Runs at 25–30 FPS."
+           data-impact="98.8% accuracy · 3–5ms CPU"
+           data-tags="OpenCV,MediaPipe,TensorFlow,CNN,solvePnP,Python"
+           data-link="https://github.com/abdallah-bodzz/driveguard">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-car-side"></i></div>
+          <div class="project-impact">98.8% accuracy<br>3–5ms CPU · 25 FPS</div>
+        </div>
+        <h3>DriveGuard</h3>
+        <p>Real-time driver fatigue detection via standard webcam. EAR/MAR geometry + CNN hybrid at 98.8% accuracy, 3–5ms CPU inference. No GPU required.</p>
+        <div class="project-tags">
+          <span class="tag">OpenCV</span>
+          <span class="tag">MediaPipe</span>
+          <span class="tag teal">TensorFlow</span>
+          <span class="tag">CNN</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/driveguard" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 4: Monte Carlo -->
       <div class="project-card reveal" data-category="quant"
            data-title="Monte Carlo Risk Simulator"
            data-desc="Correlated Monte Carlo simulator for portfolio Value at Risk (VaR) and Expected Shortfall (ES). Uses Cholesky decomposition for realistic correlation structure, fat tails via Student-t distribution (ν=5), and live market data via yfinance. Answers: 'How bad can this portfolio get?' FastAPI backend with interactive Chart.js dashboard."
@@ -1336,14 +1418,40 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/monte-carlo-risk-simulator" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/monte-carlo-risk-simulator" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 5 -->
-      <div class="project-card reveal" data-category="valuation" style="transition-delay:.08s"
+      <!-- PROJECT: Hormuz Blockade (NEW) -->
+      <div class="project-card reveal" data-category="event" style="transition-delay:.08s"
+           data-title="2026 Hormuz Blockade — Quantitative Event Study"
+           data-desc="Quantitative event study of the 47-day Strait of Hormuz blockade (Feb–Apr 2026). Key finding: WTI crude rose +32.9% during closure while XOM fell −1.5% — energy equities are not oil proxies under supply shocks. Beta flipped from +0.15 to −0.42. Gold dropped −9.6% (safe-haven failure under margin pressure). OLS abnormal returns, Cholesky correlation, DXY decomposition, counterfactual baseline across 10 assets."
+           data-impact="WTI +32.9% · XOM −1.5% · Gold −9.6%"
+           data-tags="Python,SciPy,yfinance,Plotly,OLS,Cholesky"
+           data-link="https://github.com/abdallah-bodzz/2026-hormuz-blockade-analysis">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-globe"></i></div>
+          <div class="project-impact">WTI +32.9%<br>XOM −1.5% · Gold −9.6%</div>
+        </div>
+        <h3>Hormuz Blockade Event Study</h3>
+        <p>OLS event study of 47-day Strait of Hormuz closure. Energy equities ≠ oil proxies. Beta regime detection, DXY decomposition, cross-asset shock transmission.</p>
+        <div class="project-tags">
+          <span class="tag">OLS Event Study</span>
+          <span class="tag teal">SciPy</span>
+          <span class="tag">Geopolitical Quant</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/2026-hormuz-blockade-analysis" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 5: DCF -->
+      <div class="project-card reveal" data-category="valuation"
            data-title="DCF Valuation Engine"
            data-desc="Discounted cash flow valuation tool with real financial data pulled via yfinance. FastAPI backend, dark-theme Chart.js UI, and a 7×7 sensitivity heatmap. Projects unlevered free cash flow, WACC discounting, and Gordon Growth Model terminal value. Suitable for equity research workflows."
            data-impact="Real data · 7×7 sensitivity heatmap"
@@ -1362,14 +1470,14 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/dcf-valuation-engine" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/dcf-valuation-engine" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 6 -->
-      <div class="project-card reveal" data-category="valuation" style="transition-delay:.16s"
+      <!-- PROJECT 6: Excel Model -->
+      <div class="project-card reveal" data-category="valuation" style="transition-delay:.08s"
            data-title="Financial Excel Model Generator"
            data-desc="Python script that auto-generates a dynamic 3-statement financial model (P&L, Balance Sheet, Cash Flow, DCF, scenario engine, sensitivity matrix) as an Excel file. All formulas live in Excel — Python only builds the structure. Supports Base/Best/Worst scenarios with dropdown switching via INDEX/MATCH."
            data-impact="3-statement · Base/Best/Worst scenarios"
@@ -1388,13 +1496,13 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/financial-Excel-model-generator" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/financial-Excel-model-generator" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 7 -->
+      <!-- PROJECT 7: Mortgage Power BI -->
       <div class="project-card reveal" data-category="bi"
            data-title="Mortgage Trading Analysis (Power BI)"
            data-desc="Mortgage trading desk simulation dashboard: loan pipeline review, counterparty bid evaluation, benchmark testing, and FICO-based pricing recommendations. Built as a DataCamp capstone project. Includes multi-page layout with drillthrough and Key Influencers visuals."
@@ -1414,14 +1522,40 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/mortgage-trading-analysis-powerbi" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/mortgage-trading-analysis-powerbi" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- PROJECT 8 -->
+      <!-- PROJECT: Wake County (NEW) -->
       <div class="project-card reveal" data-category="bi" style="transition-delay:.08s"
+           data-title="Wake County Budget Report (Power BI)"
+           data-desc="Government expenditure analysis on Wake County, NC open data (FY2017–2019). Star-schema model built from raw CSVs. DAX measures for YTD spend, budget utilization, variance flags, and drill-through to cost-center level. Replicates a real public-sector BI workflow end-to-end."
+           data-impact="FY2017–2019 · Star-schema model"
+           data-tags="Power BI,DAX,Star Schema,Government Analytics"
+           data-link="https://github.com/abdallah-bodzz/powerbi-wake-county-budget-report">
+        <div class="project-card-header">
+          <div class="project-icon"><i class="fa-solid fa-landmark"></i></div>
+          <div class="project-impact">Government BI<br>Star-schema · YTD DAX</div>
+        </div>
+        <h3>Wake County Budget Report</h3>
+        <p>Government expenditure analysis on NC open data. Star-schema model from raw CSVs, YTD spend, budget utilization, and cost-center drillthrough.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag teal">DAX</span>
+          <span class="tag">Government</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
+          <a href="https://github.com/abdallah-bodzz/powerbi-wake-county-budget-report" target="_blank" rel="noopener noreferrer" class="btn-sm">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 8: Financial Dashboard -->
+      <div class="project-card reveal" data-category="bi" style="transition-delay:.16s"
            data-title="12-Page Financial Dashboard (Power BI)"
            data-desc="Multi-page (12) dark Power BI dashboard covering revenue and profit analysis, customer segmentation, scenario modeling, and capital budgeting (NPV/IRR, DCF, payback period). Designed for CFO-level financial storytelling with dynamic slicers and cross-page drillthrough."
            data-impact="12 pages · NPV/IRR · DCF"
@@ -1440,7 +1574,7 @@
         </div>
         <div class="btn-row">
           <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/financial-analysis-powerbi-dashboard" target="_blank" rel="noopener" class="btn-sm">
+          <a href="https://github.com/abdallah-bodzz/financial-analysis-powerbi-dashboard" target="_blank" rel="noopener noreferrer" class="btn-sm">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
@@ -1456,7 +1590,6 @@
 <section id="experience">
   <div class="container">
     <div class="exp-grid">
-
       <div class="reveal">
         <div class="section-label">// Background</div>
         <h2 class="section-title">Experience &<br>Education</h2>
@@ -1465,9 +1598,7 @@
         </p>
       </div>
 
-      <!-- ✏️ EDIT: Your timeline items -->
       <div class="timeline reveal" style="transition-delay:.15s">
-
         <div class="timeline-item">
           <div class="period">2022 — Present</div>
           <h3>BSc Computer Science</h3>
@@ -1479,7 +1610,7 @@
           <div class="period">2024 — Present</div>
           <h3>Self-Directed Financial ML Engineer</h3>
           <div class="org">Independent · GitHub @abdallah-bodzz</div>
-          <p>Built 15+ production-grade projects across credit risk, fraud detection, Monte Carlo simulation, DCF valuation, and Power BI dashboards. All projects optimised for real business impact (ROI, cost savings, risk reduction).</p>
+          <p>Built 15+ production-grade projects across credit risk, fraud detection, Monte Carlo simulation, computer vision, DCF valuation, and Power BI dashboards. All projects optimised for real business impact.</p>
         </div>
 
         <div class="timeline-item">
@@ -1492,10 +1623,9 @@
         <div class="timeline-item">
           <div class="period">2024 — Present</div>
           <h3>Content Creator · @data_w_bodzz</h3>
-          <div class="org">TikTok & YouTube</div>
+          <div class="org">TikTok & YouTube · 200k+ views</div>
           <p>Power BI tips, SQL deep dives, and behind-the-scenes project builds. Best content: Power BI normalisation & lookup tables with 16k+ views.</p>
         </div>
-
       </div>
     </div>
   </div>
@@ -1511,24 +1641,24 @@
       <div class="reveal">
         <div class="section-label">// Let's connect</div>
         <h2 class="section-title">Open to<br><em>Opportunities</em></h2>
-        <!-- ✏️ EDIT: Your pitch -->
-        <p style="color:var(--muted);line-height:1.9;">
+        <!-- FIX: removed duplicate email button, kept LinkedIn + CV only -->
+        <p style="color:var(--muted);line-height:1.9;margin-bottom:36px;">
           I'm actively seeking junior roles in <strong style="color:var(--text)">ML engineering, quantitative finance, or data analytics</strong> — particularly in fintech or financial services. If you're building something that turns data into real decisions, let's talk.
         </p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="mailto:xabdallahxabdallahx@gmail.com" class="btn btn-primary">
-            <i class="fa-regular fa-envelope"></i> Send Email
-          </a>
-          <a href="https://www.linkedin.com/in/abdallah-abdelhady-4187802b2" target="_blank" rel="noopener" class="btn btn-outline">
+          <a href="https://www.linkedin.com/in/abdallah-abdelhady-4187802b2" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
             <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="Abdallah_Abdelhady_CV.docx" download class="btn btn-cv">
+            <i class="fa-solid fa-download"></i> Download CV
           </a>
         </div>
       </div>
 
-      <!-- ✏️ EDIT: Your social links -->
+      <!-- Social links — FIX: added X/Twitter, kept email as social card -->
       <div class="social-links reveal" style="transition-delay:.15s">
 
-        <a href="https://github.com/abdallah-bodzz" target="_blank" rel="noopener" class="social-link">
+        <a href="https://github.com/abdallah-bodzz" target="_blank" rel="noopener noreferrer" class="social-link">
           <div class="si gh"><i class="fa-brands fa-github"></i></div>
           <div class="sinfo">
             <strong>GitHub</strong>
@@ -1537,7 +1667,7 @@
           <i class="fa-solid fa-arrow-right arr"></i>
         </a>
 
-        <a href="https://www.linkedin.com/in/abdallah-abdelhady-4187802b2" target="_blank" rel="noopener" class="social-link">
+        <a href="https://www.linkedin.com/in/abdallah-abdelhady-4187802b2" target="_blank" rel="noopener noreferrer" class="social-link">
           <div class="si li"><i class="fa-brands fa-linkedin-in"></i></div>
           <div class="sinfo">
             <strong>LinkedIn</strong>
@@ -1555,20 +1685,30 @@
           <i class="fa-solid fa-arrow-right arr"></i>
         </a>
 
-        <a href="https://tiktok.com/@data_w_bodzz" target="_blank" rel="noopener" class="social-link">
+        <a href="https://tiktok.com/@data_w_bodzz" target="_blank" rel="noopener noreferrer" class="social-link">
           <div class="si tt"><i class="fa-brands fa-tiktok"></i></div>
           <div class="sinfo">
             <strong>TikTok</strong>
-            <span>@data_w_bodzz</span>
+            <span>@data_w_bodzz · 200k+ views</span>
           </div>
           <i class="fa-solid fa-arrow-right arr"></i>
         </a>
 
-        <a href="https://youtube.com/@abdallahabdelhady8713" target="_blank" rel="noopener" class="social-link">
+        <a href="https://youtube.com/@abdallahabdelhady8713" target="_blank" rel="noopener noreferrer" class="social-link">
           <div class="si yt"><i class="fa-brands fa-youtube"></i></div>
           <div class="sinfo">
             <strong>YouTube</strong>
             <span>@abdallahabdelhady8713</span>
+          </div>
+          <i class="fa-solid fa-arrow-right arr"></i>
+        </a>
+
+        <!-- NEW: X/Twitter -->
+        <a href="https://x.com/hottestboda" target="_blank" rel="noopener noreferrer" class="social-link">
+          <div class="si tw"><i class="fa-brands fa-x-twitter"></i></div>
+          <div class="sinfo">
+            <strong>X / Twitter</strong>
+            <span>@hottestboda</span>
           </div>
           <i class="fa-solid fa-arrow-right arr"></i>
         </a>
@@ -1579,12 +1719,32 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     FOOTER
+     FOOTER — enhanced with social icons
      ════════════════════════════════════════════════════════════ -->
 <footer>
-  <div class="container">
-    <!-- ✏️ EDIT: Your tagline -->
-    <p>© <span id="year"></span> <span>Abdallah Abdelhady</span> · Built with data in mind · Alexandria, Egypt</p>
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-copy">© <span id="year"></span> <span>Abdallah Abdelhady</span> · Built with data in mind · Alexandria, Egypt</p>
+      <p class="footer-updated">Last updated: May 2026</p>
+    </div>
+
+    <div class="footer-socials">
+      <a href="https://github.com/abdallah-bodzz" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/abdallah-abdelhady-4187802b2" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      <a href="https://tiktok.com/@data_w_bodzz" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a href="https://x.com/hottestboda" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="mailto:xabdallahxabdallahx@gmail.com" aria-label="Email">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -1604,7 +1764,7 @@
     <p id="modal-desc"></p>
     <div class="modal-tags" id="modal-tags"></div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a id="modal-link" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:.78rem;padding:11px 20px;">
+      <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.78rem;padding:11px 20px;">
         <i class="fa-brands fa-github"></i> View on GitHub
       </a>
       <button onclick="closeModal()" class="btn btn-outline" style="font-size:.78rem;padding:11px 20px;">Close</button>
@@ -1620,13 +1780,13 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ── Typewriter ────────────────────────────────────────────── */
-// ✏️ EDIT: Your roles here
 const roles = [
   'Financial ML Engineer',
+  'Quantitative Risk Analyst',
+  'Computer Vision Engineer',
   'Data Analyst',
   'Python Developer',
   'BI Developer',
-  'Quantitative Risk Analyst',
 ];
 let ri = 0, ci = 0, deleting = false;
 const tw = document.getElementById('typewriter');
@@ -1647,13 +1807,18 @@ typeStep();
 
 /* ── Navbar scroll ─────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
+const navCvPill = document.getElementById('nav-cv-pill');
+const btt = document.getElementById('btt');
+
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-  document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+  const y = window.scrollY;
+  navbar.classList.toggle('scrolled', y > 40);
+  btt.classList.toggle('show', y > 400);
+  // Show CV pill after scrolling past hero
+  navCvPill.classList.toggle('visible', y > 500);
 }, { passive: true });
 
-document.getElementById('btt').addEventListener('click', () =>
-  window.scrollTo({ top: 0, behavior: 'smooth' }));
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* ── Theme toggle ──────────────────────────────────────────── */
 function applyTheme(theme) {
@@ -1672,6 +1837,15 @@ applyTheme(localStorage.getItem('theme') || 'dark');
   });
 });
 
+/* ── Mobile theme btn — FIX: run on DOMContentLoaded, not just resize ── */
+const mBtn = document.getElementById('theme-btn-mobile');
+function checkMobile() {
+  mBtn.style.display = window.innerWidth <= 700 ? 'flex' : 'none';
+}
+// FIX: run immediately, not only on resize
+checkMobile();
+window.addEventListener('resize', checkMobile);
+
 /* ── Hamburger ─────────────────────────────────────────────── */
 const ham = document.getElementById('hamburger');
 const mMenu = document.getElementById('mobile-menu');
@@ -1683,14 +1857,6 @@ mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   ham.classList.remove('open');
   mMenu.classList.remove('open');
 }));
-
-/* ── Mobile theme btn visibility ──────────────────────────── */
-const mBtn = document.getElementById('theme-btn-mobile');
-function checkMobile() {
-  mBtn.style.display = window.innerWidth <= 700 ? 'flex' : 'none';
-}
-checkMobile();
-window.addEventListener('resize', checkMobile);
 
 /* ── Scroll-reveal ─────────────────────────────────────────── */
 const revealEls = document.querySelectorAll('.reveal');
@@ -1772,6 +1938,31 @@ function closeModal() {
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+/* ── Stat card → scroll to project ────────────────────────── */
+function scrollToProject(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.style.transition = 'border-color .3s, box-shadow .3s';
+    el.style.borderColor = 'var(--gold)';
+    el.style.boxShadow = '0 0 0 2px var(--gold)';
+    setTimeout(() => {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    }, 1500);
+  }
+}
+
+/* ── Mouse-follow hero glow ────────────────────────────────── */
+const heroSection = document.getElementById('hero');
+const heroGlow = document.getElementById('hero-glow');
+
+heroSection.addEventListener('mousemove', (e) => {
+  const rect = heroSection.getBoundingClientRect();
+  heroGlow.style.left = (e.clientX - rect.left) + 'px';
+  heroGlow.style.top  = (e.clientY - rect.top)  + 'px';
+}, { passive: true });
+
 /* ── Animated grid canvas ──────────────────────────────────── */
 (function() {
   const canvas = document.getElementById('grid-canvas');
@@ -1794,10 +1985,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   function draw() {
     ctx.clearRect(0, 0, W, H);
     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-    const lineColor = isDark ? 'rgba(232,168,56,0.12)' : 'rgba(180,120,20,0.1)';
-    const textColor = isDark ? 'rgba(232,168,56,' : 'rgba(180,120,20,';
+    const lineColor = isDark ? 'rgba(232,168,56,0.12)' : 'rgba(154,110,26,0.1)';
+    const textColor = isDark ? 'rgba(232,168,56,' : 'rgba(154,110,26,';
 
-    // grid lines
     ctx.strokeStyle = lineColor;
     ctx.lineWidth = 0.5;
     for (let x = 0; x <= W; x += CELL) {
@@ -1807,7 +1997,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
 
-    // animated numbers in some cells
     ctx.font = '9px DM Mono, monospace';
     ctx.textAlign = 'center';
     cells.forEach((c, i) => {
