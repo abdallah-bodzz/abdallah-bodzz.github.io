@@ -760,12 +760,17 @@
       font-family: var(--font-mono); letter-spacing: .01em;
     }
     .pbi-mobile-link { display: none; }
+    .pbi-mobile-link:active { transform: scale(0.96); }
+    @media (hover: hover) and (pointer: fine) {
+      .pbi-mobile-link:hover { background: var(--gold-dim); }
+    }
     @media (max-width: 768px) {
       .pbi-mobile-link {
         display: inline-flex; align-items: center; gap: 6px;
         margin-top: 14px; font-family: var(--font-mono); font-size: .78rem;
         color: var(--gold); border: 1px solid oklch(74% 0.138 68 / 0.3);
         padding: 9px 16px; border-radius: var(--radius);
+        transition: transform 120ms var(--ease-out);
       }
     }
     .theme-showcase {
@@ -775,8 +780,9 @@
       border-radius: var(--radius-lg); padding: 24px; align-items: center;
     }
     .theme-showcase img {
-      width: 100%; border-radius: var(--radius); border: 1px solid var(--border);
-      display: block;
+      width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      display: block; background: var(--bg3);
     }
     .theme-showcase-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1658,9 +1664,9 @@
                data-tags="Python,SciPy,yfinance,Plotly,OLS,Cholesky"
                data-link="https://github.com/abdallah-bodzz/2026-hormuz-blockade-analysis"
                data-live="https://abdallah-bodzz.github.io/2026-hormuz-blockade-analysis/"
-               data-chart="https://abdallah-bodzz.github.io/2026-hormuz-blockade-analysis/outputs/update_2/charts/21_five_window_full_timeline.png">
+               data-chart="https://abdallah-bodzz.github.io/2026-hormuz-blockade-analysis/outputs/01_normalised_prices.png">
         <div class="feat-preview">
-          <img src="https://abdallah-bodzz.github.io/2026-hormuz-blockade-analysis/outputs/update_2/charts/21_five_window_full_timeline.png"
+          <img src="https://abdallah-bodzz.github.io/2026-hormuz-blockade-analysis/outputs/01_normalised_prices.png"
                alt="Normalised price paths — WTI vs Gold vs S&P during Hormuz crisis"
                loading="lazy"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1748,6 +1754,163 @@
             </a>
             <button class="btn-sm filled" onclick="openFeaturedModal(this.closest('article'))">Details</button>
             <button class="btn-sm share-trigger" data-title="CRM Intelligence & Customer 360 Platform" data-link="https://github.com/abdallah-bodzz/crm-customer-intelligence-module" aria-label="Share this project">
+              <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- FEATURED 3: Customer Profitability ERP Dashboard — wide bento card -->
+      <article class="project-card-featured feat-wide" data-category="erp" id="profitability-card-feat"
+               data-title="Enterprise Customer Profitability & Financial Control Dashboard"
+               data-desc="Production-ready Power BI solution delivering an executive view of customer profitability, financial performance, and operational insights. Built as an ERP/CRM-aligned analytics rebuild of the Microsoft Customer Profitability sample — enhanced star-schema model, advanced DAX measures for margin and segmentation analysis, and a fully custom 'Earthy Botanical' theme (published in the Microsoft Fabric Community Themes Gallery). 4-page report: Executive Overview, Detailed Analysis, and supporting drill-through pages."
+               data-impact="4-page report · Star schema · Custom theme"
+               data-tags="Power BI,DAX,Star Schema,Custom Theme,Financial Analytics"
+               data-link="https://github.com/abdallah-bodzz/customer-profitability-erp-dashboard"
+               data-live="https://app.powerbi.com/view?r=eyJrIjoiNDhjZjY3YzgtMzBmMC00ZGRiLTliYzgtZDA4OTQ0YTFmOGViIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9">
+        <div class="feat-preview">
+          <img src="https://raw.githubusercontent.com/abdallah-bodzz/customer-profitability-erp-dashboard/main/assets/thumbnail/thumbnail.png"
+               alt="Customer Profitability Power BI dashboard preview"
+               loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="feat-preview-chart" style="display:none;" aria-hidden="true">
+            <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:var(--bg3);">
+              <text x="200" y="20" font-family="JetBrains Mono,monospace" font-size="10" fill="var(--muted)" text-anchor="middle">Customer Profitability · Margin Analysis</text>
+              <rect x="60" y="70" width="30" height="90" fill="oklch(79% 0.170 145 / 0.35)" stroke="var(--green)" stroke-width="1.5"/>
+              <rect x="110" y="50" width="30" height="110" fill="oklch(79% 0.170 145 / 0.5)" stroke="var(--green)" stroke-width="1.5"/>
+              <rect x="160" y="90" width="30" height="70" fill="oklch(79% 0.170 145 / 0.25)" stroke="var(--green)" stroke-width="1.5"/>
+              <rect x="210" y="40" width="30" height="120" fill="oklch(79% 0.170 145 / 0.6)" stroke="var(--green)" stroke-width="1.5"/>
+              <rect x="260" y="65" width="30" height="95" fill="oklch(79% 0.170 145 / 0.4)" stroke="var(--green)" stroke-width="1.5"/>
+              <text x="200" y="180" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--green)" text-anchor="middle">Margin by Segment</text>
+            </svg>
+          </div>
+          <span class="feat-badge">Enterprise · ERP</span>
+          <span class="feat-live-badge">Live Dashboard</span>
+        </div>
+        <div class="feat-body">
+          <div class="feat-metric">4-Page Report &nbsp;·&nbsp; Custom Theme</div>
+          <h3><span class="feat-cat-dot"></span> Customer Profitability & Financial Control <span class="year-badge">2026</span></h3>
+          <p>Executive-grade Power BI rebuild of the Microsoft Customer Profitability sample. Star-schema model, advanced DAX for margin and segmentation, and a custom "Earthy Botanical" theme published in the Fabric Community Gallery.</p>
+          <div class="feat-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag green">DAX</span>
+            <span class="tag">Star Schema</span>
+            <span class="tag">Custom Theme</span>
+          </div>
+          <div class="feat-btns">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiNDhjZjY3YzgtMzBmMC00ZGRiLTliYzgtZDA4OTQ0YTFmOGViIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" target="_blank" rel="noopener noreferrer" class="btn-sm live" aria-label="View live Power BI dashboard (opens in new tab)">
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live Dashboard
+            </a>
+            <a href="https://github.com/abdallah-bodzz/customer-profitability-erp-dashboard" target="_blank" rel="noopener noreferrer" class="btn-sm">
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+            <a href="https://community.fabric.microsoft.com/t5/Themes-Gallery/Earthy-Botanical-Professional-Custom-Theme-for-Executive/m-p/5284502" target="_blank" rel="noopener noreferrer" class="btn-sm" aria-label="View Earthy Botanical theme on Microsoft Fabric Community (opens in new tab)">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i> Theme Gallery
+            </a>
+            <button class="btn-sm filled" onclick="openFeaturedModal(this.closest('article'))">Details</button>
+            <button class="btn-sm share-trigger" data-title="Customer Profitability & Financial Control Dashboard" data-link="https://github.com/abdallah-bodzz/customer-profitability-erp-dashboard" aria-label="Share this project">
+              <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- FEATURED 4: Procurement Spend Analysis Dashboard — wide bento card -->
+      <article class="project-card-featured feat-wide" data-category="erp" id="procurement-card-feat"
+               data-title="Enterprise Procurement Spend Analysis & Control Dashboard"
+               data-desc="Production-ready Power BI solution focused on procurement spend visibility, savings realization, supplier performance, and discount analysis. A complete rebuild of the Microsoft Procurement Analysis sample with a sophisticated 'Dark Ruby' custom theme (published in the Microsoft Fabric Community Themes Gallery). Optimized star-schema model, advanced DAX for spend and savings metrics, and 3-page report covering spend overview, discount analysis, and executive info."
+               data-impact="3-page report · Star schema · Dark Ruby theme"
+               data-tags="Power BI,DAX,Star Schema,Custom Theme,Procurement Analytics"
+               data-link="https://github.com/abdallah-bodzz/procurement-spend-analysis-dashboard"
+               data-live="https://app.powerbi.com/view?r=eyJrIjoiZDMwMWNkYjctNGI4Ni00YjZjLWIwZDEtMjk1MjkyNTk1ZjE3IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9">
+        <div class="feat-preview">
+          <img src="https://raw.githubusercontent.com/abdallah-bodzz/procurement-spend-analysis-dashboard/main/assets/thumbnail/thumbnail.png"
+               alt="Procurement Spend Analysis Power BI dashboard preview"
+               loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="feat-preview-chart" style="display:none;" aria-hidden="true">
+            <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:var(--bg3);">
+              <text x="200" y="20" font-family="JetBrains Mono,monospace" font-size="10" fill="var(--muted)" text-anchor="middle">Procurement Spend · Category Breakdown</text>
+              <circle cx="200" cy="110" r="55" fill="none" stroke="oklch(62% 0.190 25 / 0.5)" stroke-width="18" stroke-dasharray="140 220" stroke-dashoffset="0"/>
+              <circle cx="200" cy="110" r="55" fill="none" stroke="oklch(62% 0.190 25 / 0.3)" stroke-width="18" stroke-dasharray="90 220" stroke-dashoffset="-140"/>
+              <circle cx="200" cy="110" r="55" fill="none" stroke="oklch(62% 0.190 25 / 0.15)" stroke-width="18" stroke-dasharray="115 220" stroke-dashoffset="-230"/>
+              <text x="200" y="115" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--red)" text-anchor="middle">Spend by Category</text>
+            </svg>
+          </div>
+          <span class="feat-badge">Enterprise · ERP</span>
+          <span class="feat-live-badge">Live Dashboard</span>
+        </div>
+        <div class="feat-body">
+          <div class="feat-metric">3-Page Report &nbsp;·&nbsp; Dark Ruby Theme</div>
+          <h3><span class="feat-cat-dot"></span> Procurement Spend Analysis & Control <span class="year-badge">2026</span></h3>
+          <p>Executive-grade Power BI rebuild of the Microsoft Procurement Analysis sample. Spend visibility, savings realization, and supplier performance, wrapped in a custom "Dark Ruby" theme published in the Fabric Community Gallery.</p>
+          <div class="feat-tags">
+            <span class="tag red">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">Star Schema</span>
+            <span class="tag">Custom Theme</span>
+          </div>
+          <div class="feat-btns">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZDMwMWNkYjctNGI4Ni00YjZjLWIwZDEtMjk1MjkyNTk1ZjE3IiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9" target="_blank" rel="noopener noreferrer" class="btn-sm live" aria-label="View live Power BI dashboard (opens in new tab)">
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live Dashboard
+            </a>
+            <a href="https://github.com/abdallah-bodzz/procurement-spend-analysis-dashboard" target="_blank" rel="noopener noreferrer" class="btn-sm">
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+            <a href="https://community.fabric.microsoft.com/t5/Themes-Gallery/Dark-Ruby-Premium-Dark-Theme-for-Executive-amp-Procurement/m-p/5287105" target="_blank" rel="noopener noreferrer" class="btn-sm" aria-label="View Dark Ruby theme on Microsoft Fabric Community (opens in new tab)">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i> Theme Gallery
+            </a>
+            <button class="btn-sm filled" onclick="openFeaturedModal(this.closest('article'))">Details</button>
+            <button class="btn-sm share-trigger" data-title="Procurement Spend Analysis & Control Dashboard" data-link="https://github.com/abdallah-bodzz/procurement-spend-analysis-dashboard" aria-label="Share this project">
+              <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- FEATURED 5: Fraud Detection API — wide bento card -->
+      <article class="project-card-featured feat-wide" data-category="ml" id="fraud-card-feat"
+               data-title="Fraud Detection API — Business-Value Optimized"
+               data-desc="Production-grade fraud detection service on the ULB Credit Card Fraud dataset (284,807 transactions, 0.173% fraud), rebuilt as a real service rather than a notebook. XGBoost with scale_pos_weight rebalancing, AUPRC 0.877 (AUROC 0.982), and a decision threshold chosen by maximizing net dollar value — $10,484 net value protected on the held-out test set — instead of accuracy or F1. Ships as a FastAPI service with Pydantic validation, in-memory rate limiting, structured loguru logging, a dependency-free branded operator dashboard served alongside the API, Docker + container healthcheck, and a 32-test suite that trains a real fixture model instead of mocking predictions. CI (GitHub Actions) and Codecov wired in. Known gaps between the analysis and shipped config are tracked openly rather than hidden."
+               data-impact="AUPRC 0.877 · $10,484 net value protected · 32 tests passing"
+               data-tags="XGBoost,FastAPI,Docker,Pydantic,loguru,Python,CI/CD"
+               data-link="https://github.com/abdallah-bodzz/fraud-detection-api">
+        <div class="feat-preview">
+          <img src="https://raw.githubusercontent.com/abdallah-bodzz/fraud-detection-api/main/reports/figures/hero_visual.png"
+               alt="Fraud Detection API — model spec, threshold sweep, and business impact"
+               loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="feat-preview-chart" style="display:none;" aria-hidden="true">
+            <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:var(--bg3);">
+              <text x="200" y="20" font-family="JetBrains Mono,monospace" font-size="10" fill="var(--muted)" text-anchor="middle">Threshold vs Net Business Value</text>
+              <polyline points="20,160 60,140 100,105 140,68 165,50 190,58 230,85 270,115 310,140 350,158" fill="none" stroke="var(--teal)" stroke-width="2.5"/>
+              <circle cx="165" cy="50" r="4" fill="var(--teal)"/>
+              <text x="165" y="40" font-family="JetBrains Mono,monospace" font-size="8.5" fill="var(--teal)" text-anchor="middle">τ = 0.093</text>
+              <text x="200" y="180" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--muted)" text-anchor="middle">Net value maximized, not F1</text>
+            </svg>
+          </div>
+          <span class="feat-badge">Production API</span>
+          <span class="feat-live-badge">32 Tests · CI/CD</span>
+        </div>
+        <div class="feat-body">
+          <div class="feat-metric">AUPRC 0.877 &nbsp;·&nbsp; $10,484 Net Value Protected</div>
+          <h3><span class="feat-cat-dot"></span> Fraud Detection API <span class="year-badge">2025</span></h3>
+          <p>Credit card fraud detection reframed as a cost-minimization problem, not a classification benchmark. XGBoost + business-value threshold optimization, served via FastAPI with rate limiting, structured logging, a branded operator dashboard, Docker healthchecks, and a 32-test suite trained on a real fixture model.</p>
+          <div class="feat-tags">
+            <span class="tag teal">XGBoost</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Docker</span>
+            <span class="tag teal">CI/CD</span>
+          </div>
+          <div class="feat-btns">
+            <a href="https://github.com/abdallah-bodzz/fraud-detection-api" target="_blank" rel="noopener noreferrer" class="btn-sm">
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+            <a href="https://github.com/abdallah-bodzz/fraud-detection-api/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer" class="btn-sm" aria-label="View CI pipeline status (opens in new tab)">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i> CI Status
+            </a>
+            <button class="btn-sm filled" onclick="openFeaturedModal(this.closest('article'))">Details</button>
+            <button class="btn-sm share-trigger" data-title="Fraud Detection API" data-link="https://github.com/abdallah-bodzz/fraud-detection-api" aria-label="Share this project">
               <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
             </button>
           </div>
@@ -1849,33 +2012,6 @@
         <span class="category-divider-label" style="color:var(--teal)">Machine Learning</span>
         <div class="category-divider-line"></div>
       </div>
-
-      <article class="project-card reveal" id="fraud-card" role="listitem"
-               data-category="ml" data-year="2025"
-               data-title="Fraud Detection API"
-               data-desc="Production-ready credit card fraud detection API with business-aware threshold tuning. Optimised for dollars saved — not accuracy. Threshold 0.4 protects $10,576 per batch. AUPRC 0.87 on highly imbalanced data (0.17% fraud rate). Includes Docker containerisation, rate limiting, and structured logging via loguru."
-               data-impact="AUPRC 0.87 · $10,576 protected"
-               data-tags="XGBoost,FastAPI,Docker,Pydantic,loguru,Python"
-               data-link="https://github.com/abdallah-bodzz/fraud-detection-api">
-        <div class="project-card-header">
-          <div class="project-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
-          <div class="project-impact">AUPRC 0.87<br>$10,576 protected</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;">
-          <h3 style="margin:0;">Fraud Detection API</h3>
-          <span class="year-badge">2025</span>
-        </div>
-        <p>Production-ready credit card fraud detection with business-aware threshold tuning. Optimises for dollars saved, not accuracy.</p>
-        <div class="project-tags">
-          <span class="tag">XGBoost</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag teal">Python</span>
-        </div>
-        <div class="btn-row">
-          <button class="btn-sm filled" onclick="openModal(this.closest('.project-card'))">Details</button>
-          <a href="https://github.com/abdallah-bodzz/fraud-detection-api" target="_blank" rel="noopener noreferrer" class="btn-sm">
-            <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
-          </a>
-        </div>
-      </article>
 
       <article class="project-card reveal" id="credit-card" role="listitem" style="transition-delay:.06s"
                data-category="ml" data-year="2025"

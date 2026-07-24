@@ -1,10 +1,10 @@
-# Abdallah Abdelhady - Portfolio
+# Abdallah Abdelhady — Portfolio
 
 Personal portfolio and project showcase.
 
 ## Overview
 
-This repository contains my professional portfolio website, highlighting work in financial machine learning, quantitative risk analysis, and business intelligence. The site is built with vanilla HTML, CSS, and JavaScript, deployed via GitHub Pages.
+This repo holds my portfolio site — vanilla HTML, CSS, and JS, no frameworks, deployed on GitHub Pages. I use it to keep my finished work in one place: data engineering, ML, quant risk, and BI, all built and documented properly rather than left as notebooks.
 
 ## Live Site
 
@@ -12,16 +12,18 @@ This repository contains my professional portfolio website, highlighting work in
 
 ## Featured Work
 
-- Fraud detection API with business-aware threshold optimization
-- Credit risk scoring pipeline with ROI-based model selection  
-- Monte Carlo risk simulator with correlated asset modeling
-- DCF valuation engine with live market data
-- Power BI dashboards for financial and operational analytics
+- **Fraud Detection API** — XGBoost model served through FastAPI, threshold picked by net dollar value instead of accuracy. AUPRC 0.877, $10,484 net value protected on the test set, Docker + CI, 32 tests against a real fixture model.
+- **CRM Intelligence & Customer 360 Platform** — Medallion Lakehouse (SQL Server), SCD Type 2 customer MDM, five ML models (churn, CLV, next-purchase timing, RFM, sentiment), and a 7-page Power BI report with a custom theme.
+- **Customer Profitability & Financial Control Dashboard** — Power BI rebuild of the Microsoft sample with a custom "Earthy Botanical" theme, published in the Fabric Community Gallery.
+- **Procurement Spend Analysis & Control Dashboard** — Power BI rebuild with a custom "Dark Ruby" theme, also published in the Fabric Community Gallery.
+- **Credit risk scoring pipeline** — model selection driven by ROI, not just AUC.
+- **Monte Carlo risk simulator** — correlated asset modeling with Cholesky decomposition.
+- **DCF valuation engine** — pulls live market data instead of static assumptions.
+- **Hormuz Blockade event study** — OLS abnormal returns across 10 assets during the 2026 strait closure.
 
 ## Tech Stack
 
-- HTML5, CSS3, JavaScript
-- No frameworks - static site only
+- HTML5, CSS3, JavaScript — static, no build step
 - GitHub Pages for hosting
 
 ## Local Development
@@ -29,10 +31,9 @@ This repository contains my professional portfolio website, highlighting work in
 ```bash
 git clone https://github.com/abdallah-bodzz/abdallah-bodzz.github.io.git
 cd abdallah-bodzz.github.io
-# edit index.HTML directly
 ```
 
-Open index.HTML in any browser to preview locally.
+Open `index.html` in a browser. No install, no server needed.
 
 ## Contact
 
